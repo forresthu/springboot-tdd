@@ -1,5 +1,6 @@
 package com.sb_tdd;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
@@ -33,7 +34,7 @@ class CarControllerTest {
 
         // arrange - train your mock
         given(carService.getCarDetails(anyString())).willReturn(new Car("hyundai", "hybrid"));
-
+        
         // act & assert
         mockMvc.perform(get("/cars/hyundai"))
                .andExpect(status().isOk())
@@ -42,6 +43,7 @@ class CarControllerTest {
 
         // verify that dependency is invoked
         verify(carService, times(1)).getCarDetails(anyString());
+        
     }
 
 }
